@@ -2,8 +2,8 @@ import React from 'react'
 
 function addButton() {
     return (
-            <button class="addButton">
-                <p class="pAddButton">ADD</p>
+            <button className="addButton">
+                <p className="pAddButton">ADD</p>
             </button>
     )
 }

@@ -3,8 +3,8 @@ import AddButton from "./addButton"
 
 function tableHeader() {
     return (
-        <div class="tableHeader">
-            <p class="pHeader">Cryptocurrency</p>
+        <div className="tableHeader">
+            <p className="pHeader">Cryptocurrency</p>
             <AddButton/> 
         </div>
     )

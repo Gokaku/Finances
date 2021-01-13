@@ -4,7 +4,7 @@ import TableItem from "./tableItem.js"
 
 function cryptoTable() {
     return (
-        <div class="cryptoTable">
+        <div className="cryptoTable">
             <TableHeader/>
             <TableItem/>
         </div>

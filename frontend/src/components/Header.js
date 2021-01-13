@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Header = () => {
     return (
-        <h1 class="header">
+        <h1 className="header">
             Finances
         </h1>
     )
