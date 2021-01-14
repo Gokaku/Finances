@@ -68,3 +68,43 @@ margin: 10px;
   float: left;
   font-weight: bold;
 }
+
+.tableItem{
+  margin: 10px;
+  font-size:larger;
+}
+
+.addBButton{
+  border-radius: 8px;
+  background-color: #484ab9;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  float: left;
+  color: white;
+  margin-left: 10px;
+}
+
+.formButton{
+  border-radius: 8px;
+  text-align: center;
+  background-color: #484ab9;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  float: right;
+  display:inline;
+  color: white;
+  font-size: large;
+}
+
+.pDialog{
+  background-color: #ffffff;
+  flex-direction: column;
+  font-family: 'Lato', sans-serif;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
+}
