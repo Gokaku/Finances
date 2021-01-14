@@ -7,8 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function FormDialog() {
+export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,6 +19,11 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const handleAdd = () => {
+    props.addCrypto(value)
+  }
+
+
   return (
     <div>
         <button className="addButton" onClick={handleClickOpen}>
@@ -26,13 +32,13 @@ export default function FormDialog() {
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <p className="pDialog">Cryptocurrencies</p>
             <DialogContent>
-            <TextField label="Example: BTC for Bitcoin"/>
+            <TextField value={value} onChange={(e) =>setValue(e.target.value)} label="Example: BTC for Bitcoin"/>
             </DialogContent>
             <DialogActions>
             <button onClick={handleClose} className="formButton">
                 Cancel
             </button>
-            <button onClick={handleClose} className="formButton">
+            <button onClick={handleAdd} className="formButton">
                 ADD
             </button>
             </DialogActions>
