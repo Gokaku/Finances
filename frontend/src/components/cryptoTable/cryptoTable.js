@@ -4,9 +4,7 @@ import TableHeader from "./tableHeader.js"
 import TableItem from "./tableItem.js"
 
 
-const currencies = [
-
-]
+const currencies = JSON.parse(localStorage.getItem("localData"))
 
 function CryptoTable() {
 
@@ -28,18 +26,30 @@ function CryptoTable() {
                     })
                     if(alreadyThere === false){
                         setCryptos(oldState => [...oldState, crypto])
-                        console.log(cryptos)
                     }
                 }
             })
         })
     }
 
+    const delCryptoFromList = (crypSymbol) =>{
+      let newCryptos = cryptos.filter((cryp) => cryp.symbol !== crypSymbol)
+      setCryptos(newCryptos)
+    }
+
+    const setBalance = (balance, crypSymbol) => {
+
+    }
+
+    React.useEffect(() => {
+        localStorage.setItem("localData",JSON.stringify(cryptos))
+    }, [cryptos])
+
     return (
         <div className="cryptoTable">
             <TableHeader addCrypto={addCryptoToList} />
             {cryptos.map((currency) => {
-                return <TableItem key={currency.id} {...currency} />
+                return <TableItem setBalance={setBalance} delCrypto={delCryptoFromList} key={currency.id} {...currency} />
             })}
         </div>
     )

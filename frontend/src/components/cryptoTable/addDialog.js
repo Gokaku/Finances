@@ -21,6 +21,8 @@ export default function FormDialog(props) {
 
   const handleAdd = () => {
     props.addCrypto(value.toLowerCase())
+    setValue("")
+    setOpen(false);
   }
 
 

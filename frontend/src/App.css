@@ -108,3 +108,22 @@ margin: 10px;
   margin-top: 10px;
   font-weight: bold;
 }
+
+.delButton{
+  border-radius: 8px;
+  background-color: #e43232;
+  border: none;
+  outline:none;
+  float: right;
+  cursor: pointer;
+  color: white;
+  margin-left: 10px;
+}
+
+.pX{
+  font-size: large;
+}
+
+.pSet{
+  font-size: small
+}
