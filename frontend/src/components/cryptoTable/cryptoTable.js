@@ -3,8 +3,14 @@ import React from 'react'
 import TableHeader from "./tableHeader.js"
 import TableItem from "./tableItem.js"
 
+var currencies = [];
 
-const currencies = JSON.parse(localStorage.getItem("localData"))
+if(localStorage.getItem("localData") !== null)
+{
+    currencies = JSON.parse(localStorage.getItem("localData"))
+}
+
+
 
 function CryptoTable() {
 
