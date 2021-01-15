@@ -20,7 +20,7 @@ export default function FormDialog(props) {
   };
 
   const handleAdd = () => {
-    props.addCrypto(value)
+    props.addCrypto(value.toLowerCase())
   }
 
 

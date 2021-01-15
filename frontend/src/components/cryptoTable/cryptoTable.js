@@ -5,16 +5,7 @@ import TableItem from "./tableItem.js"
 
 
 const currencies = [
-    {
-        "id": "cardano",
-        "symbol": "ada",
-        "name": "Cardano"
-    },
-    {
-        "id": "ripple",
-        "symbol": "xrp",
-        "name": "XRP"
-    }
+
 ]
 
 function CryptoTable() {
@@ -27,15 +18,22 @@ function CryptoTable() {
             data = res.data;
             data.map((crypto) => {
                 if(crypto.symbol === symbol)
-                {
-                    setCryptos(oldState => [...oldState, crypto])
-                    console.log(cryptos)
+                {  
+                    var alreadyThere = false;
+                    cryptos.map((filter) => {
+                        if(filter.symbol === symbol)
+                        {
+                            alreadyThere = true
+                        }
+                    })
+                    if(alreadyThere === false){
+                        setCryptos(oldState => [...oldState, crypto])
+                        console.log(cryptos)
+                    }
                 }
             })
         })
     }
-
-
 
     return (
         <div className="cryptoTable">
