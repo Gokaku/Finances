@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
+
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -16,29 +17,28 @@ export default function FormDialog(props) {
     setOpen(false);
   };
 
-  const handleAdd = () => {
-    props.addCrypto(value.toLowerCase())
+  const handleSet = () => {
+    props.setBalance(value, props.symbol)
     setValue("")
     setOpen(false);
   }
 
-
   return (
     <div>
-        <button className="addButton" onClick={handleClickOpen}>
-            <p className="pAddButton">ADD</p>
+        <button onClick={handleClickOpen} style={{clear: "right", margin: "0px", marginRight: "8px"}} className="addBButton">
+            <p className="pSet">Set</p>
         </button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <p className="pDialog">Cryptocurrencies</p>
+            <p className="pDialog">Set your balance</p>
             <DialogContent>
-            <TextField value={value} onChange={(e) =>setValue(e.target.value)} label="Example: BTC for Bitcoin"/>
+            <TextField value={value} onChange={(e) =>setValue(e.target.value)} type="number"/>
             </DialogContent>
             <DialogActions>
             <button onClick={handleClose} className="formButton">
                 Cancel
             </button>
-            <button onClick={handleAdd} className="formButton">
-                ADD
+            <button onClick={handleSet} className="formButton">
+                Set
             </button>
             </DialogActions>
         </Dialog>

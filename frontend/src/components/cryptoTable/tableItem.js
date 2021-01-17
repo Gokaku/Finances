@@ -1,9 +1,9 @@
 import React from 'react'
+import SetDialog from "./setDialog"
 
-function tableItem(props) {
-    const {symbol, name} = props;
-    const amount = 0;
-    const value = 0;
+
+function TableItem(props) {
+    const {symbol, name, value, balance} = props;
 
 
     return (
@@ -15,14 +15,14 @@ function tableItem(props) {
             <div>
                 <p style={{float:"left"}}>{name}</p>
                 <div>
-                    <button style={{clear: "right", margin: "0px", marginRight: "8px"}} className="addBButton">
-                        <p className="pSet">Set</p>
-                    </button>
-                    <p style={{float:"left",fontSize:"small"}} >{amount + " " + symbol.toUpperCase()}</p>
+                    <SetDialog symbol={symbol} setBalance={props.setBalance}/>
+                    <p style={{float:"left",fontSize:"small"}} >{balance + " " + symbol.toUpperCase()}</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default tableItem
+
+
+export default TableItem
