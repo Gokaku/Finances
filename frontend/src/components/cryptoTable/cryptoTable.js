@@ -13,7 +13,7 @@ if(localStorage.getItem("localData") !== null)
 var data;
 
 axios.get("https://api.coingecko.com/api/v3/coins/list").then(res => {
-            data = res.data;
+    data = res.data;
 })
 
 function CryptoTable() {
@@ -35,6 +35,7 @@ function CryptoTable() {
                     })
                     if(alreadyThere === false){
                         crypto["balance"] = 0
+                        crypto["value"] = 0
                         setCryptos(oldState => [...oldState, crypto])
                     }
                 }
@@ -42,16 +43,42 @@ function CryptoTable() {
         })
     }
 
+   
+    const [curr, setCurr] = React.useState("eur")
+
+    const updateValue = () =>{
+        if(cryptos.length >= 1)
+        {
+            var ids = ""
+            var idsA = []
+            cryptos.forEach((cry) => {
+                ids = ids + cry.id + "%2C";
+                idsA.push(cry.id)
+            })
+
+            ids = ids.slice(0, -3)
+
+            var data2 = [];
+            let fCrypto = cryptos;
+            axios.get("https://api.coingecko.com/api/v3/simple/price?ids=" + ids +"&vs_currencies=" + curr).then(res => {
+                data2 = res.data;
+                fCrypto.forEach((cryp) =>{
+                    cryp.value = Math.round(cryp.balance * data2[cryp.id][curr])
+                })
+
+                setCryptos([...fCrypto])
+            }) 
+        }
+    }
+
+
     const delCryptoFromList = (crypSymbol) =>{
         let newCryptos = cryptos.filter((cryp) => cryp.symbol !== crypSymbol)
         setCryptos(newCryptos)
     }
 
     const setBalance = (balance, symbol) =>{
-        if(true)
-        {
-            let fCrypto = cryptos;
-
+            var fCrypto = cryptos;
             fCrypto.forEach((cry) => {
                 if(cry.symbol === symbol)
                 {
@@ -59,7 +86,7 @@ function CryptoTable() {
                 }
             })
             setCryptos([...fCrypto])
-        }
+        updateValue()
     }
 
 
@@ -71,7 +98,7 @@ function CryptoTable() {
         <div className="cryptoTable">
             <TableHeader addCrypto={addCryptoToList} />
             {cryptos.map((currency) => {
-                return <TableItem value={0} setBalance={setBalance} delCrypto={delCryptoFromList} key={currency.id} {...currency} />
+                return <TableItem setBalance={setBalance} delCrypto={delCryptoFromList} key={currency.id} {...currency} />
             })}
         </div>
     )
