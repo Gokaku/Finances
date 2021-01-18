@@ -11,7 +11,7 @@ function TableItem(props) {
             <button onClick={() => props.delCrypto(symbol)} className="delButton">
                 <p className="pX">X</p>
             </button>
-            <p style={{float:"right"}}> {value + " " + curr} </p>
+            <p style={{float:"right"}}> {value + " " + curr.toUpperCase()} </p>
             <div>
                 <p style={{float:"left"}}>{name}</p>
                 <div>
