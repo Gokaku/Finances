@@ -3,7 +3,7 @@ import SetDialog from "./setDialog"
 
 
 function TableItem(props) {
-    const {symbol, name, value, balance} = props;
+    const {symbol, name, value, balance, curr} = props;
 
 
     return (
@@ -11,7 +11,7 @@ function TableItem(props) {
             <button onClick={() => props.delCrypto(symbol)} className="delButton">
                 <p className="pX">X</p>
             </button>
-            <p style={{float:"right"}}> {value + "€"} </p>
+            <p style={{float:"right"}}> {value + " " + curr} </p>
             <div>
                 <p style={{float:"left"}}>{name}</p>
                 <div>

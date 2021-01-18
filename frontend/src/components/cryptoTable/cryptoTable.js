@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import TableHeader from "./tableHeader.js"
 import TableItem from "./tableItem.js"
+import BalanceComp from "./balanceComp.js"
 
 var currencies = [];
 
@@ -20,6 +21,22 @@ function CryptoTable() {
 
     const [cryptos, setCryptos] = React.useState(currencies)
 
+
+    const totalValue = () =>{
+        var totalValue = 0;
+        cryptos.forEach((cry) =>{
+            totalValue = parseFloat(totalValue) + parseFloat(cry.value);
+        })
+        
+        return totalValue.toFixed(2);
+    }
+
+
+    const [stotalValue, setTotalValue] = React.useState(totalValue())
+
+
+
+
     const addCryptoToList = (symbol) =>{
         axios.get("https://api.coingecko.com/api/v3/coins/list").then(res => {
             data = res.data;
@@ -37,6 +54,7 @@ function CryptoTable() {
                         crypto["balance"] = 0
                         crypto["value"] = 0
                         setCryptos(oldState => [...oldState, crypto])
+                        totalValue()
                     }
                 }
             })
@@ -63,12 +81,13 @@ function CryptoTable() {
             axios.get("https://api.coingecko.com/api/v3/simple/price?ids=" + ids +"&vs_currencies=" + curr).then(res => {
                 data2 = res.data;
                 fCrypto.forEach((cryp) =>{
-                    cryp.value = Math.round(cryp.balance * data2[cryp.id][curr])
+                    cryp.value = (cryp.balance * data2[cryp.id][curr]).toFixed(2)
                 })
 
                 setCryptos([...fCrypto])
             }) 
         }
+        setTotalValue(totalValue())
     }
 
 
@@ -92,15 +111,31 @@ function CryptoTable() {
 
     React.useEffect(() => {
         localStorage.setItem("localData",JSON.stringify(cryptos))
+        const interval = setInterval(() =>{
+            updateValue()
+            console.log("valueUpdated")
+        }, 20000)
+        return () => clearInterval(interval)
     }, [cryptos])
 
+    React.useEffect(() =>{
+        setTotalValue(totalValue())
+    },[cryptos, stotalValue])
+
+
     return (
+        <>
         <div className="cryptoTable">
             <TableHeader addCrypto={addCryptoToList} />
             {cryptos.map((currency) => {
-                return <TableItem setBalance={setBalance} delCrypto={delCryptoFromList} key={currency.id} {...currency} />
+                return <TableItem curr={curr} setBalance={setBalance} delCrypto={delCryptoFromList} key={currency.id} {...currency} />
             })}
+            {cryptos.length === 0 &&
+            <p className="tablePlaceholder" >Click ADD to manage crypto!</p>    
+            }
         </div>
+        <BalanceComp totalValue={stotalValue} curr={curr}/>
+        </>
     )
 }
 

@@ -26,10 +26,30 @@ overflow: auto;
 display: grid;
 }
 
+.balanceComp{
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
+  width:600px;
+  overflow: auto;
+  margin-top: 20px;
+}
+
+.balanceHeader{
+font-size:x-large;
+margin: 10px;
+float: right;
+}
+
 .tableHeader{
 font-size:x-large;
 margin: 10px;
 }
+
+.tablePlaceholder{
+  font-size:x-large;
+  margin: 10px;
+  color: lightgray;
+  }
 
 .pHeader{
   float: left;
