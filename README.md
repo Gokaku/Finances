@@ -1,3 +1,3 @@
 # crypto-finances
 
-demo - https://crypto-finances.netlify.app
+Website- https://crypto-finances.netlify.app
