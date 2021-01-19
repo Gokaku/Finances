@@ -9,6 +9,18 @@ var currencies = [];
 if(localStorage.getItem("localData") !== null)
 {
     currencies = JSON.parse(localStorage.getItem("localData"))
+
+}
+
+var storedCurr = ""
+
+if(localStorage.getItem("localCurr") !== null)
+{
+    storedCurr = JSON.parse(localStorage.getItem("localCurr"))
+}
+else
+{
+    storedCurr = "eur"
 }
 
 var data;
@@ -54,7 +66,6 @@ function CryptoTable() {
                         crypto["balance"] = 0
                         crypto["value"] = 0
                         setCryptos(oldState => [...oldState, crypto])
-                        totalValue()
                     }
                 }
             })
@@ -62,7 +73,19 @@ function CryptoTable() {
     }
 
    
-    const [curr, setCurr] = React.useState("eur")
+    const [curr, setCurr] = React.useState(storedCurr)
+
+    const changeCurr = (changedCurr) =>{
+        axios.get("https://api.coingecko.com/api/v3/simple/supported_vs_currencies").then(res =>{
+            var supcurr = res.data;
+            supcurr.forEach((sc) =>{
+                if(sc === changedCurr)
+                {
+                setCurr(changedCurr)
+                }
+            })
+        })
+    }
 
     const updateValue = () =>{
         if(cryptos.length >= 1)
@@ -122,6 +145,11 @@ function CryptoTable() {
         setTotalValue(totalValue())
     },[cryptos, stotalValue])
 
+    React.useEffect(() =>{
+        updateValue()
+        localStorage.setItem("localCurr",JSON.stringify(curr))
+    },[curr])
+
 
     return (
         <>
@@ -134,7 +162,7 @@ function CryptoTable() {
             <p className="tablePlaceholder" >Click ADD to manage crypto!</p>    
             }
         </div>
-        <BalanceComp totalValue={stotalValue} curr={curr}/>
+        <BalanceComp changeCurr={changeCurr} totalValue={stotalValue} curr={curr}/>
         </>
     )
 }

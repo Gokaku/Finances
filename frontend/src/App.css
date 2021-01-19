@@ -72,6 +72,23 @@ margin: 10px;
   color: white;
 }
 
+.currButton{
+  border-radius: 8px;
+  text-align: center;
+  background-color: #484ab9;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  float: right;
+  display:inline;
+  margin: 8px;
+}
+
+.pCurrButton{
+  font-size:x-large;
+  color: white;
+}
+
 .ping{
   border-radius: 8px;
   background-color: #484ab9;
@@ -142,6 +159,7 @@ margin: 10px;
 
 .pX{
   font-size: large;
+  padding-top: 2px;
 }
 
 .pSet{
