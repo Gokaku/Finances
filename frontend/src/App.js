@@ -6,10 +6,12 @@ import CoinGecko from "./components/poByCoinGecko.js"
 function App() {
   return (
     <>
+    <div className="dark">
     <div className="app">
       <CoinGecko/>
       <Header/>
       <Cryptotable/>
+    </div>
     </div>
     </>
   );

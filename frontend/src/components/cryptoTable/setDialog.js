@@ -18,26 +18,29 @@ export default function FormDialog(props) {
   };
 
   const handleSet = () => {
+
+    if(value !== ""){
     props.setBalance(value, props.symbol)
+    }
     setValue("")
     setOpen(false);
   }
 
   return (
-    <div>
+    <div >
         <button onClick={handleClickOpen} style={{clear: "right", margin: "0px", marginRight: "8px"}} className="addBButton">
             <p className="pSet">Set</p>
         </button>
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <p className="pDialog">Set your balance</p>
+        <Dialog PaperProps={{style: {backgroundColor: "#181A21"}}} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <p style={{backgroundColor: "#181A21", "color": "white"}} className="pDialog">Set your balance</p>
             <DialogContent>
-            <TextField value={value} onChange={(e) =>setValue(e.target.value)} type="number"/>
+            <TextField onKeyUp={(e) => {if (e.key === "Enter") {handleSet()}}} InputLabelProps={{style: { color: 'grey' },}} InputProps={{style: {color: "white"}}} value={value} onChange={(e) =>setValue(e.target.value)} type="number"/>
             </DialogContent>
             <DialogActions>
             <button onClick={handleClose} className="formButton">
                 Cancel
             </button>
-            <button onClick={handleSet} className="formButton">
+            <button onClick={handleSet} className="formButton" >
                 Set
             </button>
             </DialogActions>

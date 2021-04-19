@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
+
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -20,25 +21,27 @@ export default function FormDialog(props) {
     props.changeCurr(value.toLowerCase())
     setValue("")
     setOpen(false);
+
   }
 
+  
 
   return (
     <div>
         <button className="currButton" onClick={handleClickOpen}>
             <p className="pCurrButton">Change</p>
         </button>
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <p className="pDialog">Currencies</p>
+        <Dialog PaperProps={{style: {backgroundColor: "#181A21"}}} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <p style={{backgroundColor: "#181A21", "color": "white"}} className="pDialog">Currencies</p>
             <DialogContent>
-            <TextField value={value} onChange={(e) =>setValue(e.target.value)} label="Example: USD for Dollar"/>
+            <TextField onKeyUp={(e) => {if (e.key === "Enter") {handleAdd()}}} InputProps={{style: {color: "white"}}} InputLabelProps={{style: { color: 'grey' },}} value={value} onChange={(e) =>setValue(e.target.value)} label="Example: USD for Dollar"/>
             </DialogContent>
             <DialogActions>
             <button onClick={handleClose} className="formButton">
                 Cancel
             </button>
             <button onClick={handleAdd} className="formButton">
-                ADD
+                Change
             </button>
             </DialogActions>
         </Dialog>

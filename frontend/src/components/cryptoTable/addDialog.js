@@ -28,16 +28,16 @@ export default function FormDialog(props) {
         <button className="addButton" onClick={handleClickOpen}>
             <p className="pAddButton">ADD</p>
         </button>
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <p className="pDialog">Cryptocurrencies</p>
+        <Dialog PaperProps={{style: {backgroundColor: "#181A21"}}} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <p style={{backgroundColor: "#181A21", "color": "white"}} className="pDialog">Cryptocurrencies</p>
             <DialogContent>
-            <TextField value={value} onChange={(e) =>setValue(e.target.value)} label="Example: BTC for Bitcoin"/>
+            <TextField onKeyUp={(e) => {if (e.key === "Enter") {handleAdd()}}} InputProps={{style: {color: "white"}}} InputLabelProps={{style: { color: 'grey' },}} value={value} onChange={(e) =>setValue(e.target.value)} label="Example: BTC for Bitcoin"/>
             </DialogContent>
             <DialogActions>
             <button onClick={handleClose} className="formButton">
                 Cancel
             </button>
-            <button onClick={handleAdd} className="formButton">
+            <button type="submit" onClick={handleAdd} className="formButton">
                 ADD
             </button>
             </DialogActions>

@@ -1,5 +1,50 @@
+html,body{margin:0;padding:0}
+
+p{
+  padding:0;
+  margin:0;
+}
+
+.dark{
+  background-color: #303443;
+}
+
+.dark h1 {
+  color: rgb(255, 255, 255);
+}
+
+.dark .CoinGeckoText{
+  color:rgb(253, 253, 253)
+}
+
+.dark .cryptoTable{
+  background-color:#181A21;
+  box-shadow: rgba(0, 0, 0, 0.24) 9px 9px 6px;
+}
+
+.dark p{
+  color: rgb(255, 255, 255);
+}
+
+.dark .balanceComp{
+  background-color:#181A21;
+  box-shadow: rgba(0, 0, 0, 0.24) 9px 9px 6px;
+}
+
+.formButton{
+  border-radius: 8px;
+  text-align: center;
+  background-color: #484ab9;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  float: right;
+  display:inline;
+  color: white;
+  font-size: large;
+}
+
 .app {
-  background-color: #ffffff;
   flex-direction: column;
   font-family: 'Lato', sans-serif;
   align-items: center;
@@ -9,17 +54,12 @@
   min-height: 100vh;
 }
 
-p{
-  padding:0;
-  margin:0;
-}
 
 .header{
 text-align: center;
 }
 
 .cryptoTable{
-background-color: rgb(255, 255, 255);
 box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
 width:600px;
 overflow: auto;
@@ -27,7 +67,6 @@ display: grid;
 }
 
 .balanceComp{
-  background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
   width:600px;
   overflow: auto;
@@ -48,8 +87,8 @@ margin: 10px;
 .tablePlaceholder{
   font-size:x-large;
   margin: 10px;
-  color: lightgray;
-  }
+  text-align: center;
+}
 
 .pHeader{
   float: left;
@@ -120,19 +159,6 @@ margin: 10px;
   float: left;
   color: white;
   margin-left: 10px;
-}
-
-.formButton{
-  border-radius: 8px;
-  text-align: center;
-  background-color: #484ab9;
-  border: none;
-  outline:none;
-  cursor: pointer;
-  float: right;
-  display:inline;
-  color: white;
-  font-size: large;
 }
 
 .pDialog{
